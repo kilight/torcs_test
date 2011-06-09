@@ -8,14 +8,13 @@
 #include <iomanip>
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 using namespace std;
 
 void exercise::format(void)
 {
 	ifstream tupel;								// create read stream for file tupel.txt
 	tupel.open("tupel.txt");					// open file tupel.txt
-
-		cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
 
 	char tmp[1000];
 	vector<data> component;
@@ -55,6 +54,9 @@ void exercise::format(void)
 		}	
 	}
 
+	
+	cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
+
 	for(int l=0;l<component.size();l=l+1)
 	{
 		cout << component[l].component[0] << " ";
@@ -66,6 +68,24 @@ void exercise::format(void)
 
 		cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
 		cout <<setw(52)<<left<< "------------------------------------ reset interface" <<endl;
+}
+
+
+
+void exercise::format(vector<data>* d)
+{
+	
+	cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
+
+	for(int l=0;l<d->size();l=l+1)
+	{
+		cout << (*d)[l].component[0] << " ";
+		cout << (*d)[l].component[1] << " ";
+		cout << (*d)[l].result << " " << endl;
+	}
+
+	cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
+	cout <<setw(52)<<left<< "------------------------------------ reset interface" <<endl;
 }
 
 

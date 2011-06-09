@@ -4,18 +4,13 @@
 #ifndef EXERCISE_H
 #define EXERCISE_H
 
+#include "database.h"
+
 class exercise
 {	
 public:
 	void format(void);
-};
-
-class data
-{
-public:
-	int component[2];
-	int weight[2];
-	int result;
+	void format(vector<data>* d);
 };
 
 #endif

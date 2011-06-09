@@ -7,11 +7,19 @@
 #include "gui.h"
 #include "create.h"			// dependency for guiB and guiC
 #include "exercise.h"		// dependency for guiD
-#include "table.h"			// dependency for guiH
+#include "table.h"
+#include <stdio.h>
 
 #include <iomanip>
 #include <iostream>
 using namespace std;
+
+gui::gui(database* d) 
+{
+	this->d = d;
+}
+	
+
 
 void gui::guiA(void)
 {
@@ -24,6 +32,7 @@ void gui::guiA(void)
 	while(guiCtrl!='q')
 	{
 		cout.fill(' ');
+		cout <<setw(52)<<left<< "        (f)ill database from file" <<endl;
 		cout <<setw(52)<<left<< "        (c)reate new testdata" <<endl;
 		cout <<setw(52)<<left<< "        (l)list testdata" <<endl;
 		cout <<setw(52)<<left<< "        (e)cercise current perceptron" << endl;
@@ -52,6 +61,11 @@ void gui::guiA(void)
 		else if(guiCtrl=='e')	// ecercise perceptron
 		{			
 			guiD();
+			guiCtrl='a';
+		}
+		else if(guiCtrl=='f')	// fill database
+		{			
+			d->createData();
 			guiCtrl='a';
 		}
 		else if(guiCtrl=='t')
@@ -93,7 +107,7 @@ void gui::guiA(void)
 			guiCtrl='a';
 		}
 
-		else if(guiCtrl=='q') {exit;}
+		else if(guiCtrl=='q') {return;}
 
 		else
 		{
@@ -115,12 +129,12 @@ void gui::guiB(void)
 void gui::guiC(void)
 {
 	create cls;		// initialize class create{}
-	cls.list();		// list testdata
+	cls.list(d->getData());		// list testdata
 }
 void gui::guiD(void)
 {
 	exercise cls;	// initialize class exercise{}
-	cls.format();	// exercise perceptron
+	cls.format(d->getData());	// exercise perceptron
 }
 void gui::guiH(void)
 {	

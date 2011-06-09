@@ -53,7 +53,7 @@ void create::list(void)
 		cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
 
 	string tmp;
-	while (!tupel.eof())		// read until end of file
+	while (tupel.good())		// read until end of file
 	{
 			getline(tupel,tmp);
 			cout << tmp << endl;
@@ -63,4 +63,16 @@ void create::list(void)
 		cout <<setw(52)<<left<< "------------------------------------ reset interface" <<endl;
 
 	tupel.close();			// close file stream
+}
+
+void create::list(vector<data>* d)
+{
+	cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
+	for(int i = 0; i < d->size(); i++) 
+	{
+		cout << (*d)[i].component[0] << " " << (*d)[i].component[1] << " " << (*d)[i].result << endl;	
+	}
+
+	cout <<setw(52)<<left<< "----------------------------------------------------" <<endl;
+	cout <<setw(52)<<left<< "------------------------------------ reset interface" <<endl;
 }
